@@ -14,7 +14,9 @@ def preprocess_img(img_path):
  
  
 # Predicting function
-def predict_result(predict):
-    full_filename = "/Users/molly/Desktop/fridgeFront/maxresdefault.jpg"
-    return full_filename
-    return render_template("index.html", user_image = full_filename)
+def predict_result(image):
+    predictions = ["egg", "marshmallows", "dirt", "pears"]
+    return predictions
+    ## PUT ACTUAL CODE HERE TO ACTUALLY PREDICT
+
+
