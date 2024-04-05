@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, url_for, redirect
 import os
 from backend.model import preprocess_img, predict_result
 from backend.cookbook import reciepesbyId, findRecipes
-
+from backend.parse_recipes import parse_recipe
 
 
 app = Flask(__name__)
@@ -39,6 +39,7 @@ def predict_image_file():
             ##ingredients_words = ingredients.split(",")
             ##recipes = findRecipes(ingredients)
             recipes = sample_recipes
+            title1, photo1, description1, title2, photo2, description2, title3, photo3, description3 = parse_recipe(recipes)
             return render_template("result.html", predictions=recipes)
  
     except:
