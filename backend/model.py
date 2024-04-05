@@ -19,4 +19,3 @@ def predict_result(image):
     return predictions
     ## PUT ACTUAL CODE HERE TO ACTUALLY PREDICT
 
-

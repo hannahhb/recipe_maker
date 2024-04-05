@@ -6,10 +6,9 @@ Hand Sign Digit Recognition
 {% block content %}
 <div class="container py-5">
 
-    <header class="text-white text-center">
-        <h1 class="display-4">Hand Sign Digit Language Detection</h1>
-        <p class="lead mb-5">A webapp to detect a digit using hand sign language. Just drop an image of Hand Digit Sign
-            and see the magic.</p>
+    <header class="text-center">
+        <h1 class="display-4">Upload your fridge</h1>
+        <p class="lead mb-5">yeaaah.</p>
     </header>
 
 
@@ -18,7 +17,7 @@ Hand Sign Digit Recognition
 
             <!-- Upload image input-->
             <form action="{{ url_for('predict_image_file') }}" enctype="multipart/form-data" method="POST">
-                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-grey shadow-sm">
                     <input class="form-control border-0" id="upload" name="file" type="file">
                     <label class="font-weight-light text-muted" for="upload" id="upload-label">Choose file</label>
                     <div class="input-group-append">
@@ -30,7 +29,7 @@ Hand Sign Digit Recognition
 
 
                 <!-- Uploaded image area-->
-                <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box
+                <p class="font-italic text-center">The image uploaded will be rendered inside the box
                     below.</p>
                 <div class="image-area mt-4"><img alt="" class="img-fluid rounded shadow-sm mx-auto d-block"
                                                   id="imageResult" name="imageResult"
