@@ -6,6 +6,7 @@ let thumbnails = document.querySelectorAll('.thumbnail .item');
 // config param
 let countItem = items.length;
 let itemActive = 0;
+print("aaa")
 // event next click
 next.onclick = function(){
     itemActive = itemActive + 1;

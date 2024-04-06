@@ -31,7 +31,7 @@ def preprocess_img(op_img):
     img_resize = op_img.resize((224, 224))
     return img_resize
 
-def predict_photo(photo):
+def predict_photo(photo, model_file_path):
 
     result = CLIENT.infer(photo, model_id="aicook-lcv4d/3")
     print(result)

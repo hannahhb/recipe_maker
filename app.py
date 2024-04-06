@@ -9,8 +9,10 @@ from PIL import Image
 app = Flask(__name__)
 PHOTO_FOLDER = os.path.join('static', 'photo')
 app.config['UPLOAD_FOLDER'] = PHOTO_FOLDER
+logo_path = os.path.join(PHOTO_FOLDER, "lenswhite.png")
+logo = Image.open(logo_path)
+model_file_path = os.path.join(app.root_path, "models", "yolov8s.pt")
 
- 
  ## ok so this one has like uhhhh the photo upload stuff
 @app.route('/')
 def main():
@@ -36,14 +38,16 @@ def predict_image_file():
     debug = False
     try:
         if request.method == 'POST':
-
+            print(app.config['UPLOAD_FOLDER'])
+            print(PHOTO_FOLDER)
             file = request.files['file']
             if file.filename != '':
                 filename = secure_filename(file.filename)
-                path = os.path.join(app.config['UPLOAD_FOLDER'], "new.jpg")
+                path = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], "new.jpg")
                 file.save(path)
+                print(path)
 
-            ingredients = predict_photo(path)
+            ingredients = predict_photo(path, model_file_path)
 
             if (debug):
                 recipes = sample_recipes
@@ -54,7 +58,7 @@ def predict_image_file():
             title1, photo1, description1, title2, photo2, description2, title3, photo3, description3 = parse_recipe(recipes)
 
             return render_template("index.html", title1=title1, photo1=photo1, description1=description1, title2=title2, photo2=photo2, description2=description2, title3=title3, photo3=photo3, description3=description3)
- 
+
     except:
         error = "File cannot be processed."
         return render_template("result.html", err=error)
@@ -64,7 +68,7 @@ def show():
     recipes = sample_recipes
     title1, photo1, description1, title2, photo2, description2, title3, photo3, description3 = parse_recipe(recipes)
 
-    return render_template("index.html", title1=title1, photo1=photo1, description1=description1, title2=title2, photo2=photo2, description2=description2, title3=title3, photo3=photo3, description3=description3)
+    return render_template("index.html", logo=logo_path, title1=title1, photo1=photo1, description1=description1, title2=title2, photo2=photo2, description2=description2, title3=title3, photo3=photo3, description3=description3)
 
 
 

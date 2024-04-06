@@ -12,28 +12,29 @@ header{
     width: 1200px;
     max-width: 90%;
     margin: auto;
-    display: grid;
-    grid-template-columns: 50px 1fr 50px;
-    grid-template-rows: 50px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 100;
+    display: inline;
+    z-index: 500;
+
 }
-header .logo{
+header .logo-text{
+    display: inline;
     font-weight: bold;
+    text-align: center;
+    z-index: 500;
 }
-header .menu{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    font-weight: 500;
+
+header .logo-img{
+    position: relative; 
+    top: 15px;
+    padding: 10px 10px 10px 30px;
+    width: 30px;
+    display: inline;
+    z-index: 500;
 }
+
 /* css slider */
 .slider{
+    z-index: -100;
     height: 100vh;
     margin-top: -50px;
     position: relative;
@@ -70,11 +71,12 @@ header .menu{
     z-index: 1;
 }
 .slider .list .item .content p:nth-child(1){
+    white-space: pre-line;
     text-transform: uppercase;
     letter-spacing: 10px;
 }
 .slider .list .item .content h2{
-    font-size: 100px;
+    font-size: 50px;
     margin: 0;
 }
 .slider .list .item.active{
@@ -134,7 +136,7 @@ header .menu{
     padding: 0 50px;
     box-sizing: border-box;
     overflow: auto;
-    justify-content: center;
+    justify-content: right;
 }
 .thumbnail::-webkit-scrollbar{
     width: 0;
