@@ -9,7 +9,7 @@ from PIL import Image
 app = Flask(__name__)
 PHOTO_FOLDER = os.path.join('static', 'photo')
 app.config['UPLOAD_FOLDER'] = PHOTO_FOLDER
-logo_path = os.path.join(PHOTO_FOLDER, "lenswhite.png")
+logo_path = os.path.join(app.root_path, PHOTO_FOLDER, "lenswhite.png")
 logo = Image.open(logo_path)
 model_file_path = os.path.join(app.root_path, "models", "yolov8s.pt")
 
@@ -53,7 +53,7 @@ def predict_image_file():
                 recipes = sample_recipes
             else:
                 recipes = findRecipes(ingredients)
-                print(print)
+                print(recipes)
             ##ingredients_words = ingredients.split(",")
             title1, photo1, description1, title2, photo2, description2, title3, photo3, description3 = parse_recipe(recipes)
 
