@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, session, url_for, redirect
 import os
-from backend.model import preprocess_img, predict_result
+from backend.model import preprocess_img, predict_result, predict_photo, convert_spooled_tempfile_to_image
 from backend.cookbook import reciepesbyId, findRecipes
 from backend.parse_recipes import parse_recipe
-
+from werkzeug.utils import secure_filename
+from PIL import Image
 
 app = Flask(__name__)
 PHOTO_FOLDER = os.path.join('static', 'photo')
@@ -32,13 +33,24 @@ def what():
 # Prediction route
 @app.route('/prediction', methods=['POST'])
 def predict_image_file():
+    debug = False
     try:
         if request.method == 'POST':
-            ##processed = preprocess_img(request.files['file'].stream)
-            ingredients = predict_result("aaa")
+
+            file = request.files['file']
+            if file.filename != '':
+                filename = secure_filename(file.filename)
+                path = os.path.join(app.config['UPLOAD_FOLDER'], "new.jpg")
+                file.save(path)
+
+            ingredients = predict_photo(path)
+
+            if (debug):
+                recipes = sample_recipes
+            else:
+                recipes = findRecipes(ingredients)
+                print(print)
             ##ingredients_words = ingredients.split(",")
-            ##recipes = findRecipes(ingredients)
-            recipes = sample_recipes
             title1, photo1, description1, title2, photo2, description2, title3, photo3, description3 = parse_recipe(recipes)
 
             return render_template("index.html", title1=title1, photo1=photo1, description1=description1, title2=title2, photo2=photo2, description2=description2, title3=title3, photo3=photo3, description3=description3)
